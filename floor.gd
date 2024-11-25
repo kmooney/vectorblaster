@@ -57,8 +57,6 @@ func _ready() -> void:
 	shader_material.set_shader_parameter("color", Color(0.3, 0.8, 1.0, 0.7))
 	mesh_instance.material_override = shader_material
 		
-	
-
 
 func _process(delta: float) -> void:
 	rotation.y += delta * rotation_factor
