@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://j3cdduk7vjbo"]
+
+[ext_resource type="Script" path="res://weapons/basic_laser.gd" id="1_8hloy"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_8hloy")

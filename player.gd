@@ -7,6 +7,8 @@ var velocity: Vector3 = Vector3.ZERO
 var acc: float = 0.0
 var rotation_speed: float = 5.0
 
+@onready var weapon = $Weapon
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -23,6 +25,9 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_pressed("brake"):
 		thrust_input = -brake_power
+		
+	if Input.is_action_pressed("fire"):
+		weapon.fire()
 
 	if thrust_input != 0:
 		velocity += transform.basis.z * thrust_input  * delta
