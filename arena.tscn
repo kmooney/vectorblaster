@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckjde4rhfurue"]
+[gd_scene load_steps=6 format=3 uid="uid://ckjde4rhfurue"]
 
-[ext_resource type="Script" path="res://floor.gd" id="1_y3f0k"]
+[ext_resource type="Script" path="res://arena.gd" id="1_tlj2w"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="2_12sb4"]
 [ext_resource type="PackedScene" uid="uid://c05ugo3gtpggi" path="res://player.tscn" id="3_2totg"]
+[ext_resource type="PackedScene" uid="uid://du1hknsfsmafh" path="res://wall_segment.tscn" id="4_jt7ak"]
 
 [sub_resource type="Environment" id="Environment_ybdft"]
 background_mode = 2
@@ -21,25 +22,7 @@ volumetric_fog_density = 0.0
 
 [node name="Arena" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.71838, 0)
-
-[node name="Floor" type="Node3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-script = ExtResource("1_y3f0k")
-
-[node name="Floor2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0)
-script = ExtResource("1_y3f0k")
-rotation_factor = 0.1
-
-[node name="Floor3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 0, 0)
-script = ExtResource("1_y3f0k")
-rotation_factor = 0.333
-
-[node name="Floor4" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 0, 0)
-script = ExtResource("1_y3f0k")
-rotation_factor = 0.3
+script = ExtResource("1_tlj2w")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.999994, -1.52582e-10, 0.00349063, -0.00349063, -4.37111e-08, 0.999994, 1.52265e-15, -1, -4.37114e-08, 0, 20, 0)
@@ -52,3 +35,11 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6.6
 light_energy = 3.667
 
 [node name="Player" parent="." instance=ExtResource("3_2totg")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -60, 0, 0)
+
+[node name="Arena Walls" type="Node3D" parent="."]
+
+[node name="Wall Segment" parent="Arena Walls" instance=ExtResource("4_jt7ak")]
+
+[node name="Wall Segment2" parent="Arena Walls" instance=ExtResource("4_jt7ak")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, -12.717)

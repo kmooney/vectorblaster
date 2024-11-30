@@ -1,17 +1,21 @@
-extends MeshInstance3D
+extends CharacterBody3D
 
 var throttle: float = 10.0
 var thrust_power: float = 100.0
 var brake_power: float = 200.0
-var velocity: Vector3 = Vector3.ZERO
 var acc: float = 0.0
 var rotation_speed: float = 5.0
+var max_velocity = 100.0
+
+@export var color: Color = Color.RED
 
 @onready var weapon = $Weapon
+@onready var mesh_instance = $MeshInstance
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if mesh_instance.material_override:
+		mesh_instance.material_override.set_shader_parameter("color", color)	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -24,16 +28,15 @@ func _physics_process(delta: float) -> void:
 		thrust_input = thrust_power
 
 	if Input.is_action_pressed("brake"):
-		thrust_input = -brake_power
+		velocity = velocity * 0.9
 		
 	if Input.is_action_pressed("fire"):
 		weapon.fire()
 
-	if thrust_input != 0:
-		velocity += transform.basis.z * thrust_input  * delta
+	velocity += transform.basis.z * thrust_input  * delta
+	velocity.limit_length(100.0)
 
-	position += velocity * delta
-	
+	move_and_slide()
 	velocity = velocity.lerp(Vector3.ZERO, 0.001)
 	
 	

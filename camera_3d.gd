@@ -13,5 +13,4 @@ func _process(delta: float) -> void:
 	pass
 	
 func _on_viewport_size_changed():
-	print("vpsc")
 	size = get_viewport().size.x / 20.0

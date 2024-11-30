@@ -22,4 +22,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	mesh.size.z += delta
+	mesh.size.z += delta * 10.0

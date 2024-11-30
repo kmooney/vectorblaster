@@ -4,22 +4,28 @@
 [ext_resource type="Script" path="res://player.gd" id="2_x0j3h"]
 [ext_resource type="PackedScene" uid="uid://j3cdduk7vjbo" path="res://weapons/basic_laser.tscn" id="3_f41yr"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_abahr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b0jay"]
 render_priority = 0
 shader = ExtResource("1_dnwdf")
-shader_parameter/lines = PackedVector4Array(2, -2, 0, -1, 0, -1, -2, -2, -2, -2, 0, 2, 0, 2, 2, -2)
+shader_parameter/lines = PackedVector4Array(0, 2.5, -2.5, -2.5, -2.5, -2.5, 0, -0.8, 0, -0.8, 2.5, -2.5, 2.5, -2.5, 0, 2.5)
 shader_parameter/line_count = 4
-shader_parameter/line_thickness = 0.171
-shader_parameter/color = Color(0.967624, 0.131109, 0.532622, 1)
+shader_parameter/line_thickness = 0.159
+shader_parameter/color = Color(0, 1, 0, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_eu57p"]
+[sub_resource type="BoxMesh" id="BoxMesh_idnpo"]
+material = SubResource("ShaderMaterial_b0jay")
 size = Vector3(5.1, 0.5, 5.1)
 
-[node name="Player" type="MeshInstance3D"]
+[node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0619762, 0)
-material_override = SubResource("ShaderMaterial_abahr")
-mesh = SubResource("BoxMesh_eu57p")
 script = ExtResource("2_x0j3h")
 
 [node name="Weapon" parent="." instance=ExtResource("3_f41yr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00382566, 0.244991, 2.10702)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+polygon = PackedVector2Array(0, 2.5, -2.5, -2.5, 0, -0.8, 2.5, -2.5, 0, 2.5)
+
+[node name="MeshInstance" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_idnpo")
