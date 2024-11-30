@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=4 uid="uid://du1hknsfsmafh"]
+
+[ext_resource type="Shader" path="res://floorshader.gdshader" id="1_pi67k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_82yw2"]
+margin = 0.704
+size = Vector3(5, 1, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vk1tu"]
+render_priority = 0
+shader = ExtResource("1_pi67k")
+shader_parameter/lines = PackedVector4Array(-3, -1, 3, -1, 2.5, -1, 2.5, 1, 2.5, 1, -2.5, 1, -2.5, 1, -2.5, -2.5)
+shader_parameter/line_count = 4
+shader_parameter/line_thickness = 0.2
+shader_parameter/color = Color(0.989092, 0, 0.15213, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tf2t8"]
+material = SubResource("ShaderMaterial_vk1tu")
+size = Vector3(5, 1, 2)
+
+[node name="Wall Segment" type="StaticBody3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_82yw2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_tf2t8")
