@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://c05ugo3gtpggi"]
+[gd_scene load_steps=9 format=4 uid="uid://c05ugo3gtpggi"]
 
 [ext_resource type="Shader" path="res://floorshader.gdshader" id="1_dnwdf"]
 [ext_resource type="Script" path="res://player.gd" id="2_x0j3h"]
@@ -16,6 +16,24 @@ shader_parameter/color = Color(0, 1, 0, 1)
 material = SubResource("ShaderMaterial_b0jay")
 size = Vector3(5.1, 0.5, 5.1)
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ocral"]
+
+[sub_resource type="Sky" id="Sky_kun7t"]
+sky_material = SubResource("ProceduralSkyMaterial_ocral")
+
+[sub_resource type="Environment" id="Environment_b2gaj"]
+background_mode = 1
+sky = SubResource("Sky_kun7t")
+ambient_light_source = 3
+ambient_light_energy = 2.27
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.91
+glow_strength = 0.98
+glow_bloom = 0.57
+glow_blend_mode = 1
+glow_hdr_threshold = 0.77
+
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0619762, 0)
 script = ExtResource("2_x0j3h")
@@ -29,3 +47,8 @@ polygon = PackedVector2Array(0, 2.5, -2.5, -2.5, 0, -0.8, 2.5, -2.5, 0, 2.5)
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_idnpo")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
+environment = SubResource("Environment_b2gaj")
+fov = 51.5

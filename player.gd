@@ -11,12 +11,23 @@ var max_velocity = 100.0
 
 @onready var weapon = $Weapon
 @onready var mesh_instance = $MeshInstance
-
+@onready var other_camera = $Camera3D
+@onready var camera = get_viewport().get_camera_3d()
 # Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	if mesh_instance.material_override:
 		mesh_instance.material_override.set_shader_parameter("color", color)	
 
+func _process(_delta: float) -> void:
+	
+	if Input.is_action_just_released("switch_camera"):
+		var temp = camera
+		camera = other_camera
+		other_camera = temp
+		camera.make_current()
+			
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 
