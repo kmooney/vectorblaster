@@ -35,9 +35,11 @@ func _physics_process(delta: float) -> void:
 
 	velocity += transform.basis.z * thrust_input  * delta
 	velocity.limit_length(100.0)
-
+	var old_v = velocity
 	move_and_slide()
-	velocity = velocity.lerp(Vector3.ZERO, 0.001)
 	
-	
+	if get_slide_collision_count() > 0:
+		var collision = get_slide_collision(0)
+		var nrm = collision.get_normal()
+		velocity = old_v.bounce(nrm) * 0.5
 	
