@@ -60,3 +60,5 @@ transform = Transform3D(-100, 0, 3.49691e-07, 0, 1, 0, -8.74228e-06, 0, -4, 45, 
 
 [node name="Wall Segment3" parent="Arena Walls" instance=ExtResource("4_jt7ak")]
 transform = Transform3D(3.22805, 0, 2.36214, 0, 4, 0, -2.36214, 0, 3.22805, 0, 0, 22.3496)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

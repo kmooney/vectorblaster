@@ -4,3 +4,7 @@
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_8hloy")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
